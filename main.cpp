@@ -17,6 +17,11 @@ int main(int argc, char *argv[])
     {
         fprintf(fd, "%s %s", "restrict", argv[2]);
     }
+    else if(strcmp(argv[1], "backup") == 0)
+    {
+        system("cp /etc/ntp.conf /etc/ntp.conf.backup");
+        printf("done \n");
+    }
     else
     {
         fprintf(fd, "%s %s", "server", "0.europe.pool.ntp.org");
@@ -26,6 +31,5 @@ int main(int argc, char *argv[])
 
     fclose(fd);
     system("systemctl restart ntp");
-    system("systemctl status ntp");
     return 0;
 }
